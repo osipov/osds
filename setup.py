@@ -3,7 +3,7 @@ import setuptools
 
 setuptools.setup(
     name="osds",
-    version="1.0.33",
+    version="1.0.35",
     author="Carl Osipov",
     author_email="carl.osipov@gmail.com",
     description="PyTorch Object Storage Dataset",

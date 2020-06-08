@@ -42,6 +42,9 @@ class ObjectStorageDataset(IterableDataset):
     iterations: None or int, optional
         Number of iterations supported by the `__iter__` method. In case if the `iterations` * `batch_size` is smaller than the number of examples in the dataset, some of the examples from the dataset are never returned by the calls to the `__iter__` method. In case if the `iterations` * `batch_size` is greater than the number of examples in the dataset, some of examples may be returned by the `__iter__` method more than ones.
 
+    dtype: None, str, or dict, optional
+        Specification of the data type to use when loading the dataset in memory. When `None`, the widest possible data type is used for numeric data which prevents loss of information but uses extra memory. When using an `str` the same `dtype` is used for all numeric columns in the dataset. When using a Python `dict`, use keys that match the column names (or column indicies) from the source dataset, and values that map to Python native data types or NumPy compatible dtype names. For example: {'col_a': 'Int64', 'col_b': 'int32', 'col_c': 'np.float16'}. Additional information on NumPy dtype specification is available from https://numpy.org/doc/1.18/reference/arrays.dtypes.html. 
+
     eager_load_batches: None or `Boolean`, optional
         Hint on whether to pre-load partitions from object storage to memory. When not specified, datasets that originate from a local filesystem (glob protocol starts with file://) and fit in memory or cluster memory are pre-loaded to cache. Datasets that do not originate from a local filesystem (for example glob protocol starts with s3:// or gcs://), are not pre-loaded by default unless eager_load_batches is set to True. Avoid setting eager_load_batches to True for datasets that do not fit in the node and cluster memory since this may lead to out of memory conditions.
 
@@ -71,6 +74,7 @@ class ObjectStorageDataset(IterableDataset):
     """
     def __init__(self, glob, storage_options=None,
                             batch_size=None,
+                            dtype = None,
                             iterations=None,
                             eager_load_batches=None,
                             fits_in_node_memory=True,
@@ -78,6 +82,7 @@ class ObjectStorageDataset(IterableDataset):
                             cache_dir=None, tensor_cache_size=1, partition_cache_size=None, batch_cache_size=1):
 
         self.glob = glob
+        self.dtype = dtype
 
         # set the platform-specific temporary directory
         cache_dir = cache_dir if cache_dir else tempfile.gettempdir()
@@ -101,7 +106,7 @@ class ObjectStorageDataset(IterableDataset):
 
         # find out the protocol of the glob, e.g. s3, gs, hdfs, etc
         protocol, _ = fsspec.core.split_protocol(glob)
-        eager_load_batches = True if protocol in ('file') and eager_load_batches is None else False
+        eager_load_batches = True if protocol in ('file') and eager_load_batches is None else eager_load_batches
 
         # use anonymous connection unless specified otherwise
         storage_options = storage_options if storage_options else {'anon': True}
@@ -120,12 +125,12 @@ class ObjectStorageDataset(IterableDataset):
 
         if fits_in_node_memory:
 
-            if eager_load_batches or eager_load_batches is None:
+            if eager_load_batches:
                 self.objs_indicies = self.__expand_obj_idx_in_full(self.objs_indicies, self.objs)
                 self.dataset_size = self.__max_batch_idx(self.objs_indicies)
                 self.batch_size = batch_size if batch_size else self.dataset_size
             else:
-                assert batch_size and type(batch_size) is int and batch_size > 0, "Eager loading batches of batches is disabled (eager_load_batches=False), so the batch size must be specified as a positive (greater than 0) integer"
+                assert batch_size and type(batch_size) is int and batch_size > 0, "Eager loading batches of batches is disabled, so the batch size must be specified as a positive (greater than 0) integer"
                 self.batch_size = batch_size
 
         elif fits_in_cluster_memory:
@@ -175,7 +180,10 @@ class ObjectStorageDataset(IterableDataset):
         df = None
         # print("__df_by_obj ", ps.memory_info())
         with self.fs.open(obj) as file:
-            df = pd.read_csv(file)
+            if self.dtype:
+                df = pd.read_csv(file, dtype = self.dtype)
+            else:
+                df = pd.read_csv(file)
         # print("__df_by_obj ", ps.memory_info())
         return df
 

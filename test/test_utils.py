@@ -56,6 +56,7 @@ class TestBatchSize(object):
         assert actual <= max, message
 
 class TestObjectDataType(object):
+  @pytest.mark.xfail
 
   ### test default data type - it should be float64
     def test_default_dtype(self):
@@ -68,7 +69,6 @@ class TestObjectDataType(object):
 
   ### test different data types
     def test_userinput_dtpye(self):
-      @pytest.mark.xfai
       object_name = ObjectStorageDataset(path_cal_housing, dtype = 'float16')
       exptected = 'torch.float16'
       batch = next(iter(DataLoader(cal_housing))) 

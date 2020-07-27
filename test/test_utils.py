@@ -54,24 +54,3 @@ class TestBatchSize(object):
         actual = object_name.batch_size
         message = "object_name.batch_size can not exceed more than the size of dataset"
         assert actual <= max, message
-
-class TestObjectDataType(object):
-  @pytest.mark.xfail
-
-  ### test default data type - it should be float64
-    def test_default_dtype(self):
-        object_name = ObjectStorageDataset(path_cal_housing)
-        expected = 'torch.float64'
-        batch = next(iter(DataLoader(object_name))) 
-        actual = str(batch.dtype)
-        message = "expected object dtype {0} and actual object dtype {1} doesn't match".format(expected, actual)
-        assert actual == expected, message
-
-  ### test different data types
-    def test_userinput_dtpye(self):
-      object_name = ObjectStorageDataset(path_cal_housing, dtype = 'float16')
-      exptected = 'torch.float16'
-      batch = next(iter(DataLoader(cal_housing))) 
-      actual = str(batch.dtype)
-      message = "expected object dtype {0} and actual object dtype {1} doesn't match".format(expected, actual)
-      assert actual == expected, message

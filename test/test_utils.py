@@ -4,8 +4,8 @@ import pytest
 import pandas as pd
 import numpy as np
 
-path_cal_housing = "file:///content/sample_data/california_housing_test.csv"
-df_pd = pd.read_csv('/content/sample_data/california_housing_test.csv')
+path_cal_housing = "file:///data/california_housing_test.csv"
+df_pd = pd.read_csv('/data/california_housing_test.csv')
 
 
 

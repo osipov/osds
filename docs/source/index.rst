@@ -13,7 +13,25 @@
    :maxdepth: 2
 
 
+Use Cases
+----------------
+.. toctree::
+   :maxdepth: 2
 
+   linux
+   gcs
+
+
+
+
+
+
+Indices and tables
+-------------------
+
+* :ref:`genindex`
+
+* :ref:`search`
 
 Introduction:
 ---------------------
@@ -66,25 +84,7 @@ Different path-url initiators are used for different storage options. For exampl
 
 
 
-Use Cases
-----------------
-.. toctree::
-   :maxdepth: 2
 
-   linux
-   gcs
-
-
-
-
-
-
-Indices and tables
--------------------
-
-* :ref:`genindex`
-
-* :ref:`search`
 
 .. toctree::
    :maxdepth: 2

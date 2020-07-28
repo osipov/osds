@@ -6,7 +6,7 @@ To get an an iterable style object from large/out-of-memory CSV files stored in 
 
 ![Documentation Status](https://readthedocs.org/projects/osds/badge/?version=latest)
 ![Build Status](https://travis-ci.com/Laay/osds.svg?branch=master)
-![codecov](https://codecov.io/gh/Laay/osds/branch/master/graph/badge.svg)(https://codecov.io/gh/Laay/osds)
+![codecov](https://codecov.io/gh/Laay/osds/branch/master/graph/badge.svg)
 
 
 

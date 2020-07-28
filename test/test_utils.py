@@ -1,56 +1,65 @@
-from osds.utils import ObjectStorageDataset
-from torch.utils.data import DataLoader
-import pytest
-import pandas as pd
-import numpy as np
-
-path_cal_housing = "file://data/california_housing_test.csv"
-df_pd = pd.read_csv('data/california_housing_test.csv')
-
-
+### the dictionary of expected outputs
+dict1 = {
+    'object_name.dtype' : 'None',
+    'object_name1.dtype' : 'float16',
+    'object_name.dataset_size' : 21568243,
+    'object_name1.batch_size' : 100, 
+    'object_name.batch_size' : 21568243,
+    'object_name1.iterations' : 20, 
+    'object_name.iterations' : 'nan'
+}
 
 class TestObjectShape(object):
 
-  ### test dimensions
-    def test_dimensions(self):
-        object_name = ObjectStorageDataset(path_cal_housing)
-        expected = len(df_pd)
-        actual = object_name.dataset_size
+
+    def test_dimensions(self):     
+        expected = 21568243
+        actual = dict1['object_name.dataset_size']
         message = "object length {0} and actual object length {1} doesn't match".format(expected, actual)
         assert actual == expected, message
 
 class TestBatchSize(object):
 
-  ### test when batch_size is less than or equal to zero
-    def test_when_input_less_than_zero(self):
-        batch_input = 10
-        object_name = ObjectStorageDataset(path_cal_housing, batch_size= batch_input)
-        actual = object_name.batch_size
+
+    def test_when_input_less_than_zero(self):      
+        actual = dict1['object_name1.batch_size']
+        expected = 100
+        max = dict1['object_name.dataset_size']
         message = "The batch size must be specified as a positive (greater than 0) integer"  
+        message1 = "object_name.batch_size should return the int {0}, but it actually returned {1}".format(expected, actual)
+        message2 = "object_name.batch_size can not exceed more than the size of dataset"
         assert actual > 0, message
+        assert type(dict1['object_name.batch_size']) is int, "The batch size must be an integer"
+        assert actual == expected, message1
+        assert actual <= max, message2 
+               
 
-
-  ### test when batch size is not integer
-    def test_when_input_not_int(self):
-          batch_input = 15
-          object_name = ObjectStorageDataset(path_cal_housing, batch_size= batch_input)
-          assert type(object_name.batch_size) is int, "The batch size must be an integer"
-
-  
-  ### test when batch size input is None
-    def test_when_input_is_None(self):
-        batch_input = None
-        expected = 3000
-        object_name = ObjectStorageDataset(path_cal_housing, batch_size= batch_input)
-        actual = object_name.batch_size
-        message = "object_name.batch_size should return the int {0}, but it actually returned {1}".format(expected, actual)    
+class TestIterations(object):       
+   
+   def test_default_iterations(self):
+        actual = 'nan'
+        expected = str(dict1['object_name.iterations'])
+        message = "default object_name.iterations should be nan"
         assert actual == expected, message
 
-  ### test when batch size input is more than the size of dataset
-    def test_when_input_is_more_than_size_of_dataset(self):
-        batch_input = 10
-        max = 3000
-        object_name = ObjectStorageDataset(path_cal_housing, batch_size= batch_input)
-        actual = object_name.batch_size
-        message = "object_name.batch_size can not exceed more than the size of dataset"
-        assert actual <= max, message
+   def test_iterations(self):
+      actual = 20
+      expected = dict1['object_name1.iterations']
+      message = "object_name.iterations should match with entered number"
+      message1 = "object_name.iterations should be integer"
+      assert actual == expected, message
+      assert type(actual) is int, message1
+
+class TestObjectDataType(object):
+
+    def test_default_dtype(self):
+        expected = 'None'
+        actual = str(dict1['object_name.dtype'])
+        message = "expected object dtype {0} and actual object dtype {1} doesn't match".format(expected, actual)
+        assert actual == expected, message
+
+    def test_userinput_dtpye(self):
+      expected = 'float16'
+      actual = str(dict1['object_name1.dtype'])
+      message = "expected object dtype {0} and actual object dtype {1} doesn't match".format(expected, actual)
+      assert actual == expected, message

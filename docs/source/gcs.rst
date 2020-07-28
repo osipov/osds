@@ -1,4 +1,4 @@
-**Iterable object from: Google Storage**
+Iterable object from: Google Storage
 ===========================================
 
 .. raw:: html

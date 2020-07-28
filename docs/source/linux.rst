@@ -1,4 +1,4 @@
-**Iterable object from: local file system (Linux)**
+Iterable object from: local file system (Linux)
 =========================================================
 
 .. raw:: html

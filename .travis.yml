@@ -7,3 +7,5 @@ install:
 # Install packages for code coverage report
 script:  
   - pytest --cov=test
+after_success:
+  - codecov

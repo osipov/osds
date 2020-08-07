@@ -121,8 +121,7 @@ Eager Load Batches
 Although the default, one batch at a time, loading behavior of the :red:`ObjectStorageDataset`class is
 
 useful for reducing the time spent during the instantiation of the class, it can be convenient to pre-
-download the entire dataset to the local filesystem cache before starting to process it. To control the
-
+download the entire dataset to the local filesystem cache before starting to process it. To control the 
 default behavior, you can use the eager_load_batches named parameter when instantiating the
 :red:`ObjectStorageDataset`. For example when using:
 
@@ -150,7 +149,7 @@ from CSV format to in-memory cache, it is memory-consuming. For example, if you 
 a batch of data using the default settings:
 
 
-..testcode::
+.. testcode::
 
 	train_ds = ObjectStorageDataset(f"s3://dc-taxi-${BUCKET_ID}-${AWS_DEFAULT_REGION}/test/part*.csv", batch_size=BATCH_SIZE)
 
@@ -166,7 +165,7 @@ you can specify the PyTorch data type for :red:`ObjectStorageDataset` to use on 
 as shown here:
 
 
-..testcode::
+.. testcode::
 
 	train_ds = ObjectStorageDataset(f"s3://dc-taxi-{BUCKET_ID}-{AWS_DEFAULT_REGION}/csv_vacuum/part*.csv",
 					batch_size=BATCH_SIZE,
@@ -181,7 +180,7 @@ In the cases where all the columns in the dataset use a common dtype, you can us
 instead of the dict from the previous example, simplifying this to:
 
 
-..testcode::
+.. testcode::
 
 
 	train_ds = ObjectStorageDataset(f"s3://dc-taxi-{BUCKET_ID}-{AWS_DEFAULT_REGION}/csv_vacuum/part*.csv", batch_size=BATCH_SIZE, dtype='float16')

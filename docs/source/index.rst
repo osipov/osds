@@ -1,10 +1,14 @@
 **Object Storage Dataset**
 =========================================
+
+.. contents::
+
+
 To get an an iterable style object from large/out-of-memory CSV files stored in local file-system or Cloud storage platforms like Amazon-S3, Google cloud storage, and Azure blob storage.
 
 .. raw:: html
 
-    <style> .red {color:#D0312D; font-weight:bold; font-size:16px} </style>
+    <style> .red {color:#D0312D; font-weight:bold; font-size:12px} </style>
 
 .. role:: red
 
@@ -23,13 +27,22 @@ and once installed, import the class in your runtime using:
 
     from osds.utils import ObjectStorageDataset
 
+Introduction
+---------------
+
+.. toctree::
+   :maxdepth: 2
+
+
+   Introduction
+
 
 Python API
 ----------------
 .. toctree::
    :maxdepth: 2
 
-   Introduction
+
    ObjectStorageDataset
    
 

@@ -6,8 +6,11 @@ install:
   - pip install pytest-cov codecov   
 # Install packages for code coverage report
 script:  
-  - curl http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/default/?recursive=true
   - pytest --cov=test
-
 after_success:
   - codecov
+env:
+  - TOXENV=coverage
+  - TOXENV=lint
+  - TOXENV=s3fs
+  - TOXENV=gcsfs

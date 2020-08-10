@@ -15,5 +15,5 @@ after_success:
 public_gcs:
   service: GCS
   bucket: "storage_bucket01"
-  credentials: 'gs://cloud-training-demos/taxifare/large/taxi-train*.csv'
+  credentials: 'gcs://gs://storage_bucket01/BicycleWeather.csv'
   public: true

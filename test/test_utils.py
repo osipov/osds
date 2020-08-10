@@ -11,7 +11,7 @@ class TestObjectShape(object):
 
     def test_dimensions(self):     
         expected = 1340
-        actual = object_name.dataset_size
+        actual = object_name1.dataset_size
         message = "object length {0} and actual object length {1} doesn't match".format(expected, actual)
         assert actual == expected, message
 
@@ -26,7 +26,7 @@ class TestBatchSize(object):
         message1 = "object_name.batch_size should return the int {0}, but it actually returned {1}".format(expected, actual)
         message2 = "object_name.batch_size can not exceed more than the size of dataset"
         assert actual > 0, message
-        assert type(object_name.batch_size) is int, "The batch size must be an integer"
+        assert type(object_name1.batch_size) is int, "The batch size must be an integer"
         assert actual == expected, message1
         assert actual <= max, message2 
                

@@ -9,8 +9,8 @@ script:
   - pytest --cov=test
 after_success:
   - codecov
-env:
-  - TOXENV=coverage
-  - TOXENV=lint
-  - TOXENV=s3fs
-  - TOXENV=gcsfs
+public_gcs:
+  service: GCS
+  bucket: "storage_bucket01"
+  credentials: 'gs://cloud-training-demos/taxifare/large/taxi-train*.csv'
+  public: true

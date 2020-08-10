@@ -1,7 +1,7 @@
 from osds.utils import ObjectStorageDataset
 from torch.utils.data import DataLoader
 
-object_name1 = ObjectStorageDataset(f"gcs://gs://storage_bucket01/BicycleWeather.csv" batch_size= 200, iterations = 20)
+object_name1 = ObjectStorageDataset(f"gcs://gs://storage_bucket01/BicycleWeather.csv", batch_size= 200, iterations = 20)
 
 batch1 = next(iter(DataLoader(object_name1)))
 

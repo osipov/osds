@@ -4,7 +4,7 @@ import pytest
 import pandas as pd
 import numpy as np
 
-object_name1 = ObjectStorageDataset(f"gcs://gs://cloud-training-demos/taxifare/large/taxi-train*.csv", batch_size= 2000, iterations = 20, worker =4)
+object_name1 = ObjectStorageDataset(f"gcs://gs://storage_bucket01/BicycleWeather.csv", storage_options = {'anon' : False }, batch_size = 20, iterations = 20,  worker =4)
 
 
 
@@ -15,7 +15,7 @@ class TestBatchSize(object):
 
     def test_when_input_less_than_zero(self):      
         actual = object_name1.batch_size
-        expected = 2000
+        expected = 20
         max = object_name1.dataset_size
         message = "The batch size must be specified as a positive (greater than 0) integer"  
         message1 = "object_name.batch_size should return the int {0}, but it actually returned {1}".format(expected, actual)

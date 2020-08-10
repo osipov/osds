@@ -30,11 +30,3 @@ class TestIterations(object):
       assert actual == expected, message
       assert type(actual) is int, message1
 
-class TestObjectDataType(object):
-
-  ### test default data type - it should be float64
-    def test_default_dtype(self):
-        expected = 'torch.float64'
-        actual = str(batch.dtype)
-        message = "expected object dtype {0} and actual object dtype {1} doesn't match".format(expected, actual)
-        assert actual == expected, message

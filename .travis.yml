@@ -1,9 +1,6 @@
 language: python
 python:  
    - "3.6"
-before_install:
-  - "pip install -U pip"
-  - "python setup.py install
 install:  
   - pip install -e . 
   - pip install pytest-cov codecov   
@@ -12,8 +9,3 @@ script:
   - pytest --cov=test
 after_success:
   - codecov
-public_gcs:
-  service: GCS
-  bucket: "storage_bucket01"
-  credentials: 'gcs://gs://storage_bucket01/BicycleWeather.csv'
-  public: true

@@ -4,7 +4,7 @@ import pytest
 import pandas as pd
 import numpy as np
 
-object_name1 = ObjectStorageDataset(f"gcs://gs://cloud-training-demos/taxifare/large/taxi-train*.csv", batch_size= 2000, iterations = 20)
+object_name1 = ObjectStorageDataset(f"gcs://gs://cloud-training-demos/taxifare/large/taxi-train*.csv", batch_size= 2000, iterations = 20, worker =4)
 
 
 

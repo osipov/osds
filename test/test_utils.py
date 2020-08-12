@@ -5,7 +5,7 @@ import pandas as pd
 import numpy as np
 
 
-object_name1 = ObjectStorageDataset(f"gcs://gs://storage_bucket01/BicycleWeather.csv", batch_size = 20, iterations = 20)
+object_name1 = ObjectStorageDataset(f"gcs://gs://storage_bucket01/BicycleWeather.csv", batch_size = 20, iterations = 20. dtype = 'int64')
 
 
 

@@ -8,19 +8,6 @@ import numpy as np
 object_name1 = ObjectStorageDataset(f"gcs://gs://storage_bucket01/BicycleWeather.csv", batch_size = 20)
 
 
-try:
-  batch1 = next(iter(object_name1))
-except StopIteration:
-  print("its gonna fail")
-
-class TestObjectShape(object):
-
-
-    def test_dimensions(self):     
-        expected = 1340
-        actual = object_name1.dataset_size
-        message = "object length {0} and actual object length {1} doesn't match".format(expected, actual)
-        assert actual == expected, message
 
 class TestBatchSize(object):
 
@@ -36,6 +23,17 @@ class TestBatchSize(object):
         assert type(object_name1.batch_size) is int, "The batch size must be an integer"
         assert actual == expected, message1
         assert actual <= max, message2 
+
+
+class TestIterations(object):       
+
+   def test_iterations(self):
+      actual = 20
+      expected = object_name1.iterations
+      message = "object_name.iterations should match with entered number"
+      message1 = "object_name.iterations should be integer"
+      assert actual == expected, message
+      assert type(actual) is int, message1
 
                
 class TestObjectDataType(object):

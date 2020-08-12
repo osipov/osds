@@ -7,8 +7,8 @@ import numpy as np
 object_name1 = ObjectStorageDataset(f"gcs://gs://storage_bucket01/BicycleWeather.csv", batch_size = 20)
 
 
-
-batch1 = next(iter(DataLoader(object_name1)))
+batch = iter(DataLoader(object_name1))
+batch1 = next(batch)
 
 
 class TestObjectShape(object):

@@ -4,7 +4,7 @@ import pandas as pd
 import numpy as np
 
 
-object_name1 = ObjectStorageDataset(f"gcs://gs://storage_bucket01/BicycleWeather.csv", batch_size = 20)
+object_name1 = ObjectStorageDataset(f"gcs://gs://storage_bucket01/BicycleWeather.csv", batch_size = 20, iteration = 20)
 
 
 
@@ -40,6 +40,6 @@ class TestObjectDataType(object):
   ### test default data type - it should be float64
     def test_default_dtype(self):
         expected = 'torch.int64'
-        actual = str(batch1.dtype)
+        actual = str(object_name1.dtype)
         message = "expected object dtype {0} and actual object dtype {1} doesn't match".format(expected, actual)
         assert actual == expected, message

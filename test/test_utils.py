@@ -4,10 +4,18 @@ import pytest
 import pandas as pd
 import numpy as np
 
+
+def cycle(iterable):
+    while True:
+        for x in iterable:
+            yield x
+
+
+
 object_name1 = ObjectStorageDataset(f"gcs://gs://storage_bucket01/BicycleWeather.csv", batch_size = 20)
 
 
-batch = iter(object_name1)
+batch = iter(cycle(object_name1))
 batch1 = next(batch)
 
 

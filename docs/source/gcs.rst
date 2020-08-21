@@ -12,7 +12,9 @@ Iterable object from: Google Storage
 .. toctree::
    :maxdepth: 2
 
-Try yourself on google colab: https://colab.research.google.com/drive/1fB-RkvH-Y9wmybumMaRaXBttPk9tv838?usp=sharing
+Try yourself on google colab:
+
+ https://colab.research.google.com/drive/1fB-RkvH-Y9wmybumMaRaXBttPk9tv838?usp=sharing
 
 
 All of the capabilities of :red:`ObjectDataStorage` can also be applied to datasets that reside in serverless object storage services like S3, Google Cloud storage, and Azure. To access datasets from google cloud storage faster and efficient way is to directly call. *f"gcs://*  can be used to call datasets directly from the Google Cloud Storage. 

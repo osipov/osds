@@ -8,6 +8,16 @@ import numpy as np
 object_name1 = ObjectStorageDataset(f"gcs://gs://cloud-training-demos/taxifare/large/taxi-train*.csv",  storage_options = {'anon' : False }, batch_size = 2000, worker =4, iterations = 200, dtype = 'float64')
 
 
+batch1 = next(iter(DataLoader(object_name1)))
+
+class TestObjectShape(object):
+
+
+    def test_dimensions(self):     
+        expected = 2156815
+        actual = len(object_name1.df)
+        message = "object length {0} and actual object length {1} doesn't match".format(expected, actual)
+        assert actual == expected, message
 
 class TestBatchSize(object):
 
@@ -15,7 +25,7 @@ class TestBatchSize(object):
     def test_when_input_less_than_zero(self):      
         actual = object_name1.batch_size
         expected = 2000
-        max = 2100000
+        max = 2156815
         message = "The batch size must be specified as a positive (greater than 0) integer"  
         message1 = "object_name.batch_size should return the int {0}, but it actually returned {1}".format(expected, actual)
         message2 = "object_name.batch_size can not exceed more than the size of dataset"

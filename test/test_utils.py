@@ -1,4 +1,4 @@
-#from osds.utils import ObjectStorageDataset
+from osds.utils import ObjectStorageDataset
 from torch.utils.data import DataLoader
 import pytest
 import pandas as pd

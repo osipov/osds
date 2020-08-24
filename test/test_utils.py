@@ -38,6 +38,6 @@ class TestObjectDataType(object):
   ### test default data type - it should be float64
     def test_default_dtype(self):
         expected = 'int64'
-        actual = str(batch.dtype)
+        actual = str(object_name1.dtype)
         message = "expected object dtype {0} and actual object dtype {1} doesn't match".format(expected, actual)
         assert actual == expected, message

@@ -7,17 +7,6 @@ import numpy as np
 object_name1 = ObjectStorageDataset(f"gcs://gs://storage_bucket01/BicycleWeather.csv", storage_options = {'anon' : False }, batch_size= 200, iterations = 20, eager_load_batches= False, dtype = 'int64')
 
 
-batch = next(iter(DataLoader(object_name1)))
-
-class TestObjectShape(object):
-
-
-    def test_dimensions(self):     
-        expected = 1340
-        actual = len(object_name1.df)
-        message = "object length {0} and actual object length {1} doesn't match".format(expected, actual)
-        assert actual == expected, message
-
 class TestBatchSize(object):
 
 

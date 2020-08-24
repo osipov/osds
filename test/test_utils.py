@@ -1,11 +1,11 @@
-from osds.utils import ObjectStorageDataset
+#from osds.utils import ObjectStorageDataset
 from torch.utils.data import DataLoader
 import pytest
 import pandas as pd
 import numpy as np
 
 
-object_name1 = ObjectStorageDataset(f"gcs://gs://cloud-training-demos/taxifare/large/taxi-train*.csv",  storage_options = {'anon' : False }, batch_size = 2000, worker =4, iterations = 200, dtype = 'float64')
+object_name1 = ObjectStorageDataset(f"gcs://gs://cloud-training-demos/taxifare/large/taxi-train*.csv", batch_size = 2000, worker =4, eager_load_batches= False, dtype = 'float64')
 
 
 batch1 = next(iter(DataLoader(object_name1)))

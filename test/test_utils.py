@@ -5,7 +5,7 @@ import pandas as pd
 import numpy as np
 
 
-object_name1 = ObjectStorageDataset(f"gcs://gs://storage_bucket01/BicycleWeather.csv", batch_size = 20, iterations = 20, dtype = 'int64')
+object_name1 = ObjectStorageDataset(f"gcs://gs://cloud-training-demos/taxifare/large/taxi-train*.csv",  storage_options = {'anon' : False }, batch_size = 2000, worker =4, iterations = 200, dtype = 'float64')
 
 
 
@@ -14,8 +14,8 @@ class TestBatchSize(object):
 
     def test_when_input_less_than_zero(self):      
         actual = object_name1.batch_size
-        expected = 20
-        max = 1340 
+        expected = 2000
+        max = 2100000
         message = "The batch size must be specified as a positive (greater than 0) integer"  
         message1 = "object_name.batch_size should return the int {0}, but it actually returned {1}".format(expected, actual)
         message2 = "object_name.batch_size can not exceed more than the size of dataset"
@@ -28,7 +28,7 @@ class TestBatchSize(object):
 class TestIterations(object):       
 
    def test_iterations(self):
-      actual = 20
+      actual = 200
       expected = object_name1.iterations
       message = "object_name.iterations should match with entered number"
       message1 = "object_name.iterations should be integer"
@@ -40,7 +40,7 @@ class TestObjectDataType(object):
 
   ### test default data type - it should be float64
     def test_default_dtype(self):
-        expected = 'int64'
+        expected = 'float64'
         actual = str(object_name1.dtype)
         message = "expected object dtype {0} and actual object dtype {1} doesn't match".format(expected, actual)
         assert actual == expected, message

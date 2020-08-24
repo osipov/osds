@@ -15,10 +15,10 @@ class TestBatchSize(object):
         expected = 20
         max = 1340
         message = "The batch size must be specified as a positive (greater than 0) integer"  
-        message1 = "object_name.batch_size should return the int {0}, but it actually returned {1}".format(expected, actual)
-        message2 = "object_name.batch_size can not exceed more than the size of dataset"
+        message1 = "object_name1.batch_size should return the int {0}, but it actually returned {1}".format(expected, actual)
+        message2 = "object_name1.batch_size can not exceed more than the size of dataset"
         assert actual > 0, message
-        assert type(object_name.batch_size) is int, "The batch size must be an integer"
+        assert type(object_name1.batch_size) is int, "The batch size must be an integer"
         assert actual == expected, message1
         assert actual <= max, message2 
                

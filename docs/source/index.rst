@@ -53,8 +53,10 @@ Use Cases
 .. toctree::
    :maxdepth: 2
 
-   linux
    gcs
+   aws
+   linux
+   windows
 
 Indices
 ----------------

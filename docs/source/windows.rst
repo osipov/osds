@@ -1,4 +1,4 @@
-Iterable object from: local file system (Linux)
+Iterable object from: local file system (Windows)
 =========================================================
 
 .. raw:: html
@@ -12,14 +12,14 @@ Iterable object from: local file system (Linux)
    :maxdepth: 2
 
 
-Our file is already residing on the local linux file system, so we will start our url from the :red:`file://` intiator. Let's instantiate the :red:`ObjectStorageDatast`. The type of ``cal_housing`` object is :red:`osds.utils.ObjectStorageDataset`.
+Our file is already residing on the windows file system, so we will start our url from the :red:`file://` intiator. Let's instantiate the :red:`ObjectStorageDatast`. The type of ``cal_housing`` object is :red:`osds.utils.ObjectStorageDataset`.
 
 .. testcode::
 
     from osds.utils import ObjectStorageDataset
     from torch.utils.data import DataLoader
 
-    cal_housing =  ObjectStorageDataset("file:///content/sample_data/california_housing_test.csv", batch_size = 10)
+    cal_housing =  ObjectStorageDataset("file://C:\\Users\\laayt\\OneDrive\\Pictures\\california_housing_test.csv", batch_size = 10)
 
     type(cal_housing)
     >> osds.utils.ObjectStorageDataset

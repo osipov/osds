@@ -10,11 +10,11 @@ setuptools.setup(
     url="http://github.com/osipov/osds",
     license="GPL v2.0",
     install_requires=[
-      'fsspec==0.7.4',
+      'fsspec',
       'torch',
       'pandas',
-      's3fs',
-      'gcsfs==0.5.0'
+      's3fs==0.4.2',
+      'gcsfs==0.6.2'
     ],
     packages=setuptools.find_packages()
 )

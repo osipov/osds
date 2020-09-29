@@ -2,9 +2,9 @@
 import setuptools
 
 setuptools.setup(
-    name="osds",
+    name="osds-channel-preview",
     version="1.0.41",
-    author="CounterFactual.AI"
+    author="CounterFactual.AI",
     author_email="osds@counterfactual.ai",
     description="PyTorch Object Storage Dataset",
     url="http://github.com/osipov/osds",

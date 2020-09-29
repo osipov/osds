@@ -2,7 +2,7 @@
 import setuptools
 
 setuptools.setup(
-    name="osds-channel-preview",
+    name="osds",
     version="1.0.41",
     author="CounterFactual.AI",
     author_email="osds@counterfactual.ai",

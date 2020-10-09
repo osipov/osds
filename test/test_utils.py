@@ -4,11 +4,9 @@ import pytest
 import pandas as pd
 import numpy as np
 
-google.auth.default()
 
-object_name1 = ObjectStorageDataset(f"gcs://gs://cloud-training-demos/taxifare/large/taxi-train*.csv",  
-                                       storage_options = {'anon' : False}, 
-                                       dtype='float32',
+object_name1 = ObjectStorageDataset(f"s3://nyc-tlc/trip data/yellow_tripdata_2017-01.csv",  
+                                       storage_options = {'anon' : True }, 
                                        batch_size = 2000, 
                                        eager_load_batches=False)
 
@@ -48,7 +46,7 @@ class TestObjectDataType(object):
 
   ### test default data type - it should be float64
     def test_default_dtype(self):
-        expected = 'float32'
+        expected = 'None'
         actual = str(object_name1.dtype)
         message = "expected object dtype {0} and actual object dtype {1} doesn't match".format(expected, actual)
         assert actual == expected, message

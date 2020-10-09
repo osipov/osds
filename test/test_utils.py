@@ -4,11 +4,13 @@ import pytest
 import pandas as pd
 import numpy as np
 
+google.auth.default()
+
 object_name1 = ObjectStorageDataset(f"gcs://gs://cloud-training-demos/taxifare/large/taxi-train*.csv",  
                                        storage_options = {'anon' : False}, 
                                        dtype='float32',
                                        batch_size = 2000, 
-                                       eager_load_batches=True)
+                                       eager_load_batches=False)
 
 
 batch1 = next(iter(DataLoader(object_name1)))

@@ -13,7 +13,6 @@ object_name1 = ObjectStorageDataset(f"s3://nyc-tlc/trip data/yellow_tripdata_201
 
 batch1 = next(iter(DataLoader(object_name1)))
 
-
 class TestObjectShape(object):
 
 
@@ -21,7 +20,8 @@ class TestObjectShape(object):
         expected = 9710124
         actual = len(object_name1.df)
         message = "object length {0} and actual object length {1} doesn't match".format(expected, actual)
-        assert actual == expected, message'
+        assert actual == expected, message
+
 
 
 class TestBatchSize(object):

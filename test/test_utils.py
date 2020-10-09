@@ -5,7 +5,7 @@ import pandas as pd
 import numpy as np
 
 object_name1 = ObjectStorageDataset(f"gcs://gs://cloud-training-demos/taxifare/large/taxi-train*.csv",  
-                                       storage_options = {'anon' : True }, 
+                                       storage_options = {'anon' : False}, 
                                        dtype='float32',
                                        batch_size = 16384, 
                                        eager_load_batches=False)

@@ -3,9 +3,9 @@ import setuptools
 
 setuptools.setup(
     name="osds",
-    version="1.0.35",
-    author="Carl Osipov",
-    author_email="carl.osipov@gmail.com",
+    version="1.0.41",
+    author="CounterFactual.AI",
+    author_email="osds@counterfactual.ai",
     description="PyTorch Object Storage Dataset",
     url="http://github.com/osipov/osds",
     license="GPL v2.0",
@@ -24,7 +24,7 @@ setuptools.setup(
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
 #
-#     https://github.com/osipov/pytorch-object-storage/blob/master/LICENSE
+#     https://github.com/osipov/osds/blob/master/LICENSE
 #
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,

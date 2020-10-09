@@ -8,7 +8,7 @@ object_name1 = ObjectStorageDataset(f"gcs://gs://cloud-training-demos/taxifare/l
                                        storage_options = {'anon' : False}, 
                                        dtype='float32',
                                        batch_size = 2000, 
-                                       eager_load_batches=False)
+                                       eager_load_batches=True)
 
 
 batch1 = next(iter(DataLoader(object_name1)))

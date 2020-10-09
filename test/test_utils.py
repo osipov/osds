@@ -7,7 +7,7 @@ import numpy as np
 object_name1 = ObjectStorageDataset(f"gcs://gs://cloud-training-demos/taxifare/large/taxi-train*.csv",  
                                        storage_options = {'anon' : False}, 
                                        dtype='float32',
-                                       batch_size = 16384, 
+                                       batch_size = 2000, 
                                        eager_load_batches=False)
 
 
@@ -20,7 +20,7 @@ class TestBatchSize(object):
 
     def test_input_batchsize(self):      
         actual = object_name1.batch_size
-        expected = 16384
+        expected = 2000
         max = 16384
         message = "The batch size must be specified as a positive (greater than 0) integer"  
         message1 = "object_name1.batch_size should return the int {0}, but it actually returned {1}".format(expected, actual)

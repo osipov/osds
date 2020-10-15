@@ -53,5 +53,3 @@ We also split database based on labels and features. Labels has only one row and
    features.shape
    >> torch.Size([1, 9, 9])
 
-
-

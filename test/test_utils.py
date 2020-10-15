@@ -5,9 +5,9 @@ import pandas as pd
 import numpy as np
 
 
-object_name1 = ObjectStorageDataset(f"s3://nyc-tlc/trip data/yellow_tripdata_2017-01.csv",  
+object_name1 = ObjectStorageDataset(f"s3://nyc-tlc/trip data/yellow_tripdata_2017-0*.csv",  
                                        storage_options = {'anon' : True }, 
-                                       batch_size = 2000, 
+                                       batch_size = 5000, 
                                        eager_load_batches=False)
 
 
@@ -29,7 +29,7 @@ class TestBatchSize(object):
 
     def test_input_batchsize(self):      
         actual = object_name1.batch_size
-        expected = 2000
+        expected = 5000
         max = 16384
         message = "The batch size must be specified as a positive (greater than 0) integer"  
         message1 = "object_name1.batch_size should return the int {0}, but it actually returned {1}".format(expected, actual)

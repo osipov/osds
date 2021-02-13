@@ -3,7 +3,7 @@ import setuptools
 
 setuptools.setup(
     name="osds",
-    version="1.0.41",
+    version="1.0.42",
     author="CounterFactual.AI",
     author_email="osds@counterfactual.ai",
     description="PyTorch Object Storage Dataset",

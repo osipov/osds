@@ -119,6 +119,8 @@ class ObjectStorageDataset(IterableDataset):
 
         # get the object paths matching the glob
         self.objs = self.fs.glob(glob)
+        if not isinstance(self.objs, list) or not len(self.objs):
+            raise RuntimeWarning(f"Specified glob pattern {self.glob} failed to match any objects")
         self.objs_indicies = [0]
 
         self.iterations = iterations if iterations else float('nan')
